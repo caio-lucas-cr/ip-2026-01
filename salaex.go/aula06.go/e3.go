@@ -12,7 +12,7 @@ func main() {
 		f.Scan(&valReal[i])
 	}
 
-	for i := 0; i < len(valInv); i++ {
+	for i := 0; i < len(valReal); i++ {
 		valInv[i] = valReal[9-i]
 	}
 

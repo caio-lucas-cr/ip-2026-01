@@ -16,7 +16,7 @@ func main() {
 		soma = soma + nota[i]
 	}
 
-	media = soma / 3
+	media = soma / float64(len(nota))
 
 	f.Printf("O valor da média geral é: %.2f\n", media)
 
