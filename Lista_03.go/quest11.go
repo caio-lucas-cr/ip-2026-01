@@ -6,8 +6,12 @@ func main() {
 
 	var n int
 
-	f.Println("Insira um núemro inteiro: ")
+	f.Println("Insira um núemro inteiro positivo: ")
 	f.Scan(&n)
+
+	if n <= 0 {
+		return
+	}
 
 	F := fatorial(n)
 
@@ -17,7 +21,7 @@ func main() {
 func fatorial(n int) int {
 	var k int = 1
 
-	for i := 1; i <= n; i++ {
+	for i := 2; i <= n; i++ {
 		k = k * i
 	}
 	return k
