@@ -2,9 +2,9 @@ package handlers
 
 import (
 	"fmt"
-	"servidorHTTP/app/utils"
 	"net/http"
-	"text/template"
+	"net/url"
+	"servidorHTTP/app/utils"
 )
 
 func UpdateAccountHandler(response http.ResponseWriter, request *http.Request) {
@@ -51,7 +51,6 @@ func UpdateAccountHandler(response http.ResponseWriter, request *http.Request) {
 	err = utils.UpdateUser(currentEmail, updates)
 	if err != nil {
 		http.Error(response, "Erro ao atualizar os dados no banco de dados", http.StatusInternalServerError)
-		fmt.Println(err)
 		return
 	}
 
@@ -63,26 +62,12 @@ func UpdateAccountHandler(response http.ResponseWriter, request *http.Request) {
 		consultationEmail = email
 	}
 
-	user, err := utils.GetUserByEmail(consultationEmail)
+	_, err = utils.GetUserByEmail(consultationEmail)
 	if err != nil {
 		http.Error(response, "Erro ao buscar informações do usuário", http.StatusInternalServerError)
 		return
 	}
 
-	// Carrega o template do perfil
-	tmpl, err := template.ParseFiles("static/profile.html")
-	if err != nil {
-		http.Error(response, "Erro ao carregar o template", http.StatusInternalServerError)
-		return
-	}
-
-	// Renderiza o template com os dados do usuário
-	err = tmpl.Execute(response, user)
-	if err != nil {
-		http.Error(response, "Erro ao renderizar o template", http.StatusInternalServerError)
-		return
-	}
-
 	// Redireciona para a página de perfil ou outra página de sucesso
-	http.Redirect(response, request, "/profile.html", http.StatusOK)
+	http.Redirect(response, request, "/profile.html?email="+url.QueryEscape(consultationEmail), http.StatusSeeOther)
 }

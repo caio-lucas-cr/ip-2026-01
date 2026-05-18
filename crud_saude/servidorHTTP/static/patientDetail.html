@@ -20,6 +20,10 @@
             <div class="patient-section">
                 <div class="patient-header">
                     <h2>{{.Patient.Name}}</h2>
+                    <div class="patient-meta">
+                        <small>Criado em: {{.Patient.CreatedAt}}</small>
+                        <small>Atualizado em: {{.Patient.UpdatedAt}}</small>
+                    </div>
                     <div class="patient-actions">
                         <a href="/updatePatient?id={{.Patient.ID}}" class="btn btn-warning">Editar Paciente</a>
                         <a href="/deletePatient?id={{.Patient.ID}}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar este paciente?');">Deletar Paciente</a>

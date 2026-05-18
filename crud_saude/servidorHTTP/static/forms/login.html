@@ -1,30 +1,38 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servidor HTTP em GoLang</title>
+    <title>Login - CRUD Saúde</title>
     <link rel="stylesheet" href="../styles/login.style.css">
 </head>
 
 <body>
     <div id="container">
-        <h3>Entre na sua conta</h3>
+        <header class="page-header">
+            <h1>Login</h1>
+            <p>Entre com seu e-mail e senha para acessar a gestão de pacientes e laudos.</p>
+        </header>
+
         <form method="POST" action="/login">
-            <div>
-                <label>E-mail:</label>
-                <input name="email" placeholder="Digite o seu e-mail aqui" value="" type="text">
+            <div class="field-group">
+                <label>E-mail</label>
+                <input name="email" placeholder="Digite o seu e-mail" type="email" required>
             </div>
-            <div>
-                <label>Senha:</label>
-                <input name="password" placeholder="Digite a sua senha aqui" value="" type="password">
+            <div class="field-group">
+                <label>Senha</label>
+                <input name="password" placeholder="Digite a sua senha" type="password" required>
             </div>
 
-            <button type="submit"><span>Concluir</span></button>
+            <button type="submit"><span>Entrar</span></button>
         </form>
-    </div>
 
+        <footer class="page-footer">
+            <a href="/index.html">Voltar ao Dashboard</a>
+            <a href="/forms/createAccount.html">Criar nova conta</a>
+        </footer>
+    </div>
 </body>
 
 </html>

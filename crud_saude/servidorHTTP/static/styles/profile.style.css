@@ -1,63 +1,77 @@
-:root {
-    --primary-color: #0072b9;
-    --background-color: #f4f4f9;
-    --text-color: #333;
-    --card-background: #fff;
-    --card-shadow: rgba(0, 0, 0, 0.1);
+﻿:root {
+    --bg: #eef2ff;
+    --surface: #ffffff;
+    --text: #0f172a;
+    --muted: #475569;
+    --primary: #4338ca;
+    --shadow: 0 28px 60px rgba(15, 23, 42, 0.08);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 body {
-    background-color: var(--background-color);
-    color: var(--text-color);
+    min-height: 100vh;
+    background: linear-gradient(180deg, #eef2ff 0%, #f8fafc 100%);
+    color: var(--text);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    padding: 2rem;
 }
 
 #container {
-    background-color: var(--card-background);
+    width: min(640px, 100%);
+    background: var(--surface);
+    border-radius: 32px;
     padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px var(--card-shadow);
-    width: 90%;
-    max-width: 600px;
-    text-align: center;
+    box-shadow: var(--shadow);
 }
 
 h1 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
+    color: var(--primary);
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
 }
 
 #user-info {
-    margin-top: 1rem;
-    text-align: left;
+    margin-top: 1.5rem;
+    display: grid;
+    gap: 1rem;
 }
 
 #user-info p {
-    margin: 0.5rem 0;
-    font-size: 1rem;
+    padding: 1rem 1.25rem;
+    background: #f8fafc;
+    border-radius: 18px;
+    border: 1px solid #e2e8f0;
+    color: var(--text);
+    line-height: 1.75;
 }
 
 #user-info p strong {
-    color: var(--primary-color);
+    color: var(--primary);
 }
 
 @media (max-width: 768px) {
-    #container {
+    body {
         padding: 1rem;
-        width: 100%;
+    }
+
+    #container {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.85rem;
     }
 
     #user-info p {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
 }

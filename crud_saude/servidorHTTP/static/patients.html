@@ -31,6 +31,8 @@
                             <th>Email</th>
                             <th>CPF</th>
                             <th>Telefone</th>
+                            <th>Criado Em</th>
+                            <th>Atualizado Em</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -42,6 +44,8 @@
                                 <td>{{.Email}}</td>
                                 <td>{{.CPF}}</td>
                                 <td>{{.Phone}}</td>
+                                <td>{{.CreatedAt}}</td>
+                                <td>{{.UpdatedAt}}</td>
                                 <td>
                                     <a href="/patientDetail?id={{.ID}}" class="btn btn-info">Ver</a>
                                     <a href="/updatePatient?id={{.ID}}" class="btn btn-warning">Editar</a>
