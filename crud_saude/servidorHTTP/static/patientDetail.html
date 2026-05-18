@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Paciente - Saúde</title>
+    <link rel="stylesheet" href="/styles/patientDetail.style.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <h1>🏥 Detalhes do Paciente</h1>
+            <ul>
+                <li><a href="/index.html">Início</a></li>
+                <li><a href="/patients">Pacientes</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <div class="patient-section">
+                <div class="patient-header">
+                    <h2>{{.Patient.Name}}</h2>
+                    <div class="patient-actions">
+                        <a href="/updatePatient?id={{.Patient.ID}}" class="btn btn-warning">Editar Paciente</a>
+                        <a href="/deletePatient?id={{.Patient.ID}}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar este paciente?');">Deletar Paciente</a>
+                    </div>
+                </div>
+
+                <div class="patient-info">
+                    <div class="info-group">
+                        <label>Email:</label>
+                        <p>{{.Patient.Email}}</p>
+                    </div>
+                    <div class="info-group">
+                        <label>CPF:</label>
+                        <p>{{.Patient.CPF}}</p>
+                    </div>
+                    <div class="info-group">
+                        <label>Data de Nascimento:</label>
+                        <p>{{.Patient.BornDate}}</p>
+                    </div>
+                    <div class="info-group">
+                        <label>Telefone:</label>
+                        <p>{{.Patient.Phone}}</p>
+                    </div>
+                    <div class="info-group">
+                        <label>Endereço:</label>
+                        <p>{{.Patient.Address}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reports-section">
+                <div class="reports-header">
+                    <h3>📋 Laudos Médicos</h3>
+                    <a href="/createMedicalReport?patientID={{.Patient.ID}}" class="btn btn-primary">+ Novo Laudo</a>
+                </div>
+
+                {{if .Reports}}
+                    <div class="reports-list">
+                        {{range .Reports}}
+                            <div class="report-card">
+                                <div class="report-header">
+                                    <h4>{{.Title}}</h4>
+                                    <p class="report-date">{{.CreatedAt}}</p>
+                                </div>
+                                <div class="report-info">
+                                    <p><strong>Médico:</strong> {{.Doctor}}</p>
+                                    <p><strong>Conteúdo:</strong></p>
+                                    <p class="report-content">{{.Content}}</p>
+                                </div>
+                                <div class="report-actions">
+                                    <a href="/editMedicalReport?reportID={{.ID}}" class="btn btn-warning">Editar</a>
+                                    <a href="/deleteMedicalReport?reportID={{.ID}}&patientID={{.PatientID}}" class="btn btn-danger" onclick="return confirm('Tem certeza?');">Deletar</a>
+                                </div>
+                            </div>
+                        {{end}}
+                    </div>
+                {{else}}
+                    <div class="empty-state">
+                        <p>Nenhum laudo registrado para este paciente. <a href="/createMedicalReport?patientID={{.Patient.ID}}">Criar novo laudo</a></p>
+                    </div>
+                {{end}}
+            </div>
+        </main>
+    </div>
+</body>
+</html>

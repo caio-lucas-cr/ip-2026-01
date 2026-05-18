@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Pacientes - Saúde</title>
+    <link rel="stylesheet" href="/styles/patients.style.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <h1>🏥 Gestão de Pacientes</h1>
+            <ul>
+                <li><a href="/index.html">Início</a></li>
+                <li><a href="/patients" class="active">Pacientes</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <div class="header-section">
+                <h2>Lista de Pacientes</h2>
+                <a href="/createPatient" class="btn btn-primary">+ Novo Paciente</a>
+            </div>
+
+            {{if .}}
+                <table class="patients-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>CPF</th>
+                            <th>Telefone</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{range .}}
+                            <tr>
+                                <td>{{.ID}}</td>
+                                <td>{{.Name}}</td>
+                                <td>{{.Email}}</td>
+                                <td>{{.CPF}}</td>
+                                <td>{{.Phone}}</td>
+                                <td>
+                                    <a href="/patientDetail?id={{.ID}}" class="btn btn-info">Ver</a>
+                                    <a href="/updatePatient?id={{.ID}}" class="btn btn-warning">Editar</a>
+                                    <a href="/deletePatient?id={{.ID}}" class="btn btn-danger" onclick="return confirm('Tem certeza?');">Deletar</a>
+                                </td>
+                            </tr>
+                        {{end}}
+                    </tbody>
+                </table>
+            {{else}}
+                <div class="empty-state">
+                    <p>Nenhum paciente registrado. <a href="/createPatient">Criar novo paciente</a></p>
+                </div>
+            {{end}}
+        </main>
+    </div>
+</body>
+</html>
